@@ -1,0 +1,109 @@
+/* Global Functions */
+/* Begin App Styles */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+body {
+  font: normal 14px/18px Helvetica, Arial, Sans-Serif;
+}
+#main {
+  width: 960px;
+  margin: 0 auto;
+  padding: 20px 20px 40px 20px;
+  margin-bottom: 20px;
+  border: solid 1px #ddd;
+  border-top: none;
+}
+h1 {
+  padding-bottom: 10px;
+  border-bottom: double 10px #666;
+  margin-bottom: 30px;
+}
+h1.returnHome a {
+  text-decoration: none;
+  color: #000;
+}
+h1.noBottomBorder {
+  border-bottom: none;
+}
+h1.showCursor {
+  cursor: pointer;
+}
+h2:after {
+  content: ":";
+}
+h3 {
+  margin-top: 40px;
+}
+.product {
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: dotted 2px rgba(0,0,0,0.05);
+}
+.photoList ul li {
+  list-style: none;
+  float: left;
+}
+.photoList ul li img {
+  margin: 20px 20px 20px 0;
+}
+.photoList ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.button {
+  background-image: -moz-linear-gradient(top, #fff, #ccc);
+  background-image: -webkit-linear-gradient(top, #fff, #ccc);
+  background-image: -o-linear-gradient(top, #fff, #ccc);
+  background-image: -ms-linear-gradient(top, #fff, #ccc);
+  background-image: linear-gradient(top, #fff, #ccc);
+  border: solid 1px #666;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 4px 23px;
+  text-decoration: none;
+  color: #000;
+  -webkit-box-shadow: 1px 1px 3px #666;
+  -moz-box-shadow: 1px 1px 3px #666;
+  -o-box-shadow: 1px 1px 3px #666;
+  -ms-box-shadow: 1px 1px 3px #666;
+  box-shadow: 1px 1px 3px #666;
+  background-image: -moz-linear-gradient(top, #ccc, #fff);
+  background-image: -webkit-linear-gradient(top, #ccc, #fff);
+  background-image: -o-linear-gradient(top, #ccc, #fff);
+  background-image: -ms-linear-gradient(top, #ccc, #fff);
+  background-image: linear-gradient(top, #ccc, #fff);
+}
+.button:hover {
+  background-image: none;
+  -webkit-box-shadow: inset 0 0 8px #aaa, 1px 1px 3px #666;
+  -moz-box-shadow: inset 0 0 8px #aaa, 1px 1px 3px #666;
+  -o-box-shadow: inset 0 0 8px #aaa, 1px 1px 3px #666;
+  -ms-box-shadow: inset 0 0 8px #aaa, 1px 1px 3px #666;
+  box-shadow: inset 0 0 8px #aaa, 1px 1px 3px #666;
+}
+.button:active {
+  background-image: -moz-linear-gradient(top, #ccc, #fff);
+  background-image: -webkit-linear-gradient(top, #ccc, #fff);
+  background-image: -o-linear-gradient(top, #ccc, #fff);
+  background-image: -ms-linear-gradient(top, #ccc, #fff);
+  background-image: linear-gradient(top, #ccc, #fff);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+  -ms-box-shadow: none;
+  box-shadow: none;
+}
+.button.back {
+  border-top-left-radius: 40px 20px;
+  border-bottom-left-radius: 40px 20px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  padding-left: 30px;
+  margin-right: 20px;
+}

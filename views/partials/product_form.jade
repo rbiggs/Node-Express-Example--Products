@@ -1,0 +1,27 @@
+p 
+  label(for='productName')
+  |  Name:
+p
+  input(type='text', id='productName', name='product[name]', value=product.name)
+p 
+  label(for='productDescription')
+  |  Description:
+p
+  textarea(id='productDescription', name='product[description]')= product.description
+p 
+  label(for='productDescription')
+  |  Price:
+p
+  input(type='text', id='productPrice', name='product[price]', value=product.price)p
+    label(for='product_photo') Photo:
+p
+  select(id='product_photo', name='product[photo]')
+    - each photo in photos
+      option(value=photo, selected=(product.photo == photo))= photo
+p
+  //input(type='submit')
+  - if (product.id)
+    a(href='/products/' + product.id, class='button back') Back
+  - else
+    a(href='/products/', class='button back') Back    
+  a(href='javascript:void(null)', class='button submit') Submit

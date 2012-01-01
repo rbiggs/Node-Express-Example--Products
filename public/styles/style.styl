@@ -1,0 +1,99 @@
+/* Global Functions */
+vendor(prop, args)
+  -webkit-{prop} args
+  -moz-{prop} args
+  -o-{prop} args
+  -ms-{prop} args
+  {prop} args
+shadow()
+  vendor 'box-shadow' arguments
+bi()
+  background-image arguments
+grad()
+  bi -moz-linear-gradient(arguments);
+  bi -webkit-linear-gradient(arguments);
+  bi -o-linear-gradient(arguments);
+  bi -ms-linear-gradient(arguments);
+  bi linear-gradient(arguments);
+radius()
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  border-radius arguments
+pad()
+  padding arguments
+padbot()
+  padding-bottom arguments
+mar()
+  margin arguments
+marbot()
+  margin-bottom arguments
+borbot()
+  border-bottom arguments
+deco()
+  text-decoration arguments
+/* Begin App Styles */
+html, body
+  mar 0
+  pad 0
+  min-height 100%
+body
+  font normal 14px/18px Helvetica, Arial, Sans-Serif
+#main
+  width 960px
+  mar 0 auto
+  pad 20px 20px 40px 20px
+  marbot 20px
+  border solid 1px #ddd
+  border-top none
+h1
+  padbot 10px
+  borbot double 10px #666
+  marbot 30px
+  &.returnHome a
+    deco none
+    color #000
+  &.noBottomBorder
+    borbot none
+  &.showCursor
+    cursor pointer
+h2:after
+  content ":"
+h3  
+  margin-top 40px
+.product
+  marbot 40px
+  padbot 20px
+  borbot dotted 2px rgba(0,0,0,0.05)
+.photoList 
+   ul
+    li
+      list-style none
+      float left
+      img
+        margin 20px 20px 20px 0
+    &:after
+      content ""
+      display block
+      clear both
+.button
+  grad top, #fff, #ccc
+  border solid 1px #666
+  radius 5px
+  pad 4px 23px
+  deco none
+  color #000
+  shadow 1px 1px 3px #666
+  grad top, #ccc, #fff
+  &:hover
+    bi none;
+    shadow inset 0 0 8px #aaa, 1px 1px 3px #666
+  &:active
+    grad top, #ccc, #fff
+    shadow none
+  &.back
+    border-top-left-radius 40px 20px
+    border-bottom-left-radius 40px 20px
+    border-top-right-radius 8px
+    border-bottom-right-radius 8px
+    padding-left 30px
+    margin-right 20px

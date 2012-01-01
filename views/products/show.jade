@@ -1,0 +1,11 @@
+h1 Product Details
+h2= product.name
+p= product.description
+- if (product.photo && !/blank/.test(product.photo))
+  p
+    img(src=product.photo, alt=product.photo)
+p 
+  strong Price: #{product.price}
+p
+  a(href='/products/', class='button back') Back
+  a(href='/products/' + product.id + '/edit', class='button') Edit

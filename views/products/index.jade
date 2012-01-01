@@ -1,0 +1,9 @@
+prepend body 
+  h1.returnHome 
+    a(href='/') Most Popular Products
+script
+   document.body.classList.toggle('homeCursor');
+#products!= partial('../partials/product', products);
+h3 Add a new product
+p
+ a(href='/products/new', class='button') New Product
