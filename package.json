@@ -1,10 +1,11 @@
 {
-    "name": "Apple Products"
+    "name": "Apple_Products"
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
       "express": "2.5.1"
     , "stylus": ">= 0.0.1"
     , "jade": ">= 0.0.1"
+    , "mongodb": ">=0.9.6-7"
   }
 }

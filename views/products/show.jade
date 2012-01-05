@@ -1,5 +1,6 @@
-h1 Product Details
-h2= product.name
+p
+  a(href='/logout', class="logout") Logout
+h1 Details for #{product.name}
 p= product.description
 - if (product.photo && !/blank/.test(product.photo))
   p

@@ -1,6 +1,17 @@
 h1 New Photo
-form(action='/photos', method='POST', enctype='multipart/form-data')!= partial('partials/photo_form')
+form(action='/photos', method='POST', enctype='multipart/form-data')!= partial('partials/photos/photo_form')
   p
-    input(type='submit')
-p
-  a(href='/products/', class='button back') Back
+    a(href='/photos/', class='button back') Back
+    a(href='javascript:void(null)', class='button submit') Submit
+script
+  $(function() {
+    $('.submit').bind('click', function() {
+      $('form').submit()
+    })
+    $('#uploadPhotoInput').bind("mouseover", function() {
+      this.classList.add('hover')
+    });
+    $('#uploadPhotoInput').bind("mouseout", function() {
+      this.classList.remove('hover')
+    });
+  });

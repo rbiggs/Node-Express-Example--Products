@@ -2,8 +2,11 @@ script
    document.body.classList.toggle('photoList')
 h1 Available Photos:
 p
+  a(href='/logout', class="logout") Logout
+p
   a(href='/products/', class='button back') Back
   a(href='/photos/new', class='button') Add new photo
+
 ul
   - each photo in photos
     - if (!/blank/.test(photo))
