@@ -227,5 +227,17 @@ app.post('/photos', function(req, res) {
     res.redirect('/photos');
   
 });
+
+
+// Basic Error Handling
+// If the route provided was not trapped by the previous handlers,
+// render it as a 404 error page.
+
+app.use(function(req, res, next) {
+  // respond with html page
+  res.render('404');
+  return;
+});
+
 app.listen(3333);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

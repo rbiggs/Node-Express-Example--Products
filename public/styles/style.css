@@ -156,3 +156,10 @@ textarea {
 #productName {
   width: 400px;
 }
+.error {
+  color: #f00;
+  background-color: #fff9d6;
+  border: solid 1px #f00;
+  font-weight: bold;
+  padding: 20px;
+}
