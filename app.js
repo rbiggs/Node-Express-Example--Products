@@ -39,7 +39,10 @@ app.dynamicHelpers({
       , msg = req.session.success;
     delete req.session.error;
     delete req.session.success;
-    if (err) return err;
+    if (err) {
+      var error = "<span class='error'>";
+      return error + err + '</span>';
+    }
     if (msg) return msg;
   }
 });
@@ -95,7 +98,6 @@ app.get('/', function(req, res){
 
 app.get('/login', function(req, res) {
   if (req.session.user) {
-    req.session.success = 'Authenticated as ' + req.session.user.name
     res.redirect('/products');
   } else {
     res.render('login');
