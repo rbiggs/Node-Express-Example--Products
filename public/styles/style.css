@@ -13,21 +13,21 @@ body {
   width: 960px;
   margin: 0 auto;
   padding: 20px 20px 40px 20px;
-  margin-bottom: 20px;
+  mart: 20px;
   border: solid 1px #ddd;
   border-top: none;
 }
 h1 {
   padding-bottom: 10px;
   border-bottom: double 10px #666;
-  margin-bottom: 30px;
+  mart: 30px;
 }
 h1.returnHome a {
   text-decoration: none;
   color: #000;
 }
 h1.noBottomBorder {
-  border-bottom: none;
+  border-top: none;
 }
 h1.showCursor {
   cursor: pointer;
@@ -36,16 +36,20 @@ h2:after {
   content: ":";
 }
 h3 {
-  margin-top: 40px;
+  mart: 40px;
 }
 .product {
-  margin-bottom: 40px;
+  mart: 40px;
   padding-bottom: 20px;
   border-bottom: dotted 2px rgba(0,0,0,0.10);
 }
+.photoList ul {
+  margin-bottom: 40px;
+}
 .photoList ul li {
   list-style: none;
-  float: left;
+  padding-bottom: 20px;
+  border-bottom: solid 1px #ccc;
 }
 .photoList ul li img {
   margin: 20px 20px 20px 0;
@@ -161,9 +165,12 @@ textarea {
   background-color: #fff9d6;
   border: solid 1px #f00;
   font-weight: bold;
-  padding: 20px;
+pad20px
 }
 span.error {
   margin: 10px 0 20px;
   display: inline-block;
+}
+.name {
+  font-weight: bold;
 }

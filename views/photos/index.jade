@@ -10,8 +10,11 @@ p
 ul
   - each photo in photos
     - if (!/blank/.test(photo))
-     li
-       img(src=photo)
+      - var imgName = photo.split('/');
+      - imgName = imgName[imgName.length-1]
+      li
+        img(src=photo)
+        p.name= imgName
 p
   a(href='/products/', class='button back') Back
   a(href='/photos/new', class='button') Add new photo

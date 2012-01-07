@@ -17,19 +17,25 @@ grad()
   bi -o-linear-gradient(arguments);
   bi -ms-linear-gradient(arguments);
   bi linear-gradient(arguments);
+bc()
+  background-color arguments
 rad()
   -webkit-border-radius arguments
   -moz-border-radius arguments
   border-radius arguments
 pad()
   padding arguments
-padbot()
+padb()
   padding-bottom arguments
 mar()
   margin arguments
-marbot()
+marb()
   margin-bottom arguments
-borbot()
+bor()
+  border arguments
+bort()
+  border-top arguments
+borb()
   border-bottom arguments
 deco()
   text-decoration arguments
@@ -44,33 +50,35 @@ body
   width 960px
   mar 0 auto
   pad 20px 20px 40px 20px
-  marbot 20px
-  border solid 1px #ddd
-  border-top none
+  mart 20px
+  bor solid 1px #ddd
+  bort none
 h1
-  padbot 10px
-  borbot double 10px #666
-  marbot 30px
+  padb 10px
+  borb double 10px #666
+  mart 30px
   &.returnHome a
     deco none
     color #000
   &.noBottomBorder
-    borbot none
+    bort none
   &.showCursor
     cursor pointer
 h2:after
   content ":"
 h3  
-  margin-top 40px
+  mart 40px
 .product
-  marbot 40px
-  padbot 20px
-  borbot dotted 2px rgba(0,0,0,0.1)
+  mart 40px
+  padb 20px
+  borb dotted 2px rgba(0,0,0,0.1)
 .photoList 
-   ul
+  ul
+    marb 40px
     li
       list-style none
-      float left
+      padb 20px
+      borb solid 1px #ccc
       img
         margin 20px 20px 20px 0
     &:after
@@ -82,7 +90,7 @@ a
     float right
   &.button
     grad top, #fff, #ccc
-    border solid 1px #666
+    bor solid 1px #666
     rad 5px
     pad 4px 23px
     deco none
@@ -108,7 +116,7 @@ input[type=file]
   text-align right
   &::-webkit-file-upload-button
     grad top, #fff, #ccc
-    border solid 1px #666
+    bor solid 1px #666
     rad 5px
     pad 4px 23px
     deco none
@@ -118,7 +126,7 @@ input[type=file]
   &.hover::-webkit-file-upload-button
     -webkit-appearance none
     bi none;
-    background-color: #fff
+    bc #fff
     shad inset 0 0 8px #aaa, 1px 1px 3px #666
 textarea 
   width: 400px
@@ -127,10 +135,12 @@ textarea
   width: 400px
 .error
   color red;
-  background-color #fff9d6
-  border solid 1px red
+  bc #fff9d6
+  bor solid 1px red
   font-weight bold
-  padding 20px
+  pad20px
 span.error
   mar 10px 0 20px
   display inline-block
+.name
+  font-weight bold
