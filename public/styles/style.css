@@ -165,7 +165,7 @@ textarea {
   background-color: #fff9d6;
   border: solid 1px #f00;
   font-weight: bold;
-pad20px
+  padding: 20px;
 }
 span.error {
   margin: 10px 0 20px;
