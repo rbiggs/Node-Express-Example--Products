@@ -48,10 +48,10 @@ app.dynamicHelpers({
 //Generate a salt for the user to prevent rainbow table attacks.
 
 var users = {
-  rbiggs: {
-    name: 'rbiggs'
+  joe: {
+    name: 'joe'
     , salt: 'randomly-generated-salt'
-    , pass: hash('dingo', 'randomly-generated-salt')
+    , pass: hash('zombie_chickens', 'randomly-generated-salt')
   }
 };
 // Used to generate a hash of the plain-text password + salt
