@@ -1,7 +1,7 @@
 .product
-  p 
-    a(href='/products/' + product.id, class='button') Details
   h2= product.name
   p= product.description
   p 
     strong Price: #{product.price}
+  p 
+    a(href='/products/' + product.id, class='button') Details
