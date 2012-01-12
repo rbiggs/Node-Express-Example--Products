@@ -1,3 +1,11 @@
+// If the user is logged in, show the logout link:
+- if (user) 
+  p
+    a(href='/logout', class="logout") Logout
+// Otherwise show the login link:
+- if (!user) 
+  p
+    a(href='/login', class="logout") Login
 h1.noBottomBorder Apple Products Online
 p All the popular Apple products to make your life more productive and enjoyable.
 p Check out our available 

@@ -1,5 +1,6 @@
 h1 Add a New Product #{product.name}
 form(action='/products', method='POST')
+  // Use product_form partial:
   div!= partial('../partials/products/product_form', {locals: {product: product}})
 script
   $(function() {

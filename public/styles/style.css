@@ -40,7 +40,7 @@ h3 {
 }
 .product {
   mart: 40px;
-  padding-bottom: 20px;
+  padding: 1px 0 10px;
   border-bottom: dotted 2px rgba(0,0,0,0.10);
 }
 .photoList ul {
@@ -61,6 +61,7 @@ h3 {
 }
 a.logout {
   float: right;
+  margin: 0 0 0 20px;
 }
 a.button {
   background-image: -moz-linear-gradient(top, #fff, #ccc);
@@ -71,6 +72,8 @@ a.button {
   border: solid 1px #666;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
   border-radius: 5px;
   padding: 4px 23px;
   text-decoration: none;
@@ -80,11 +83,6 @@ a.button {
   -o-box-shadow: 1px 1px 3px #666;
   -ms-box-shadow: 1px 1px 3px #666;
   box-shadow: 1px 1px 3px #666;
-  background-image: -moz-linear-gradient(top, #ccc, #fff);
-  background-image: -webkit-linear-gradient(top, #ccc, #fff);
-  background-image: -o-linear-gradient(top, #ccc, #fff);
-  background-image: -ms-linear-gradient(top, #ccc, #fff);
-  background-image: linear-gradient(top, #ccc, #fff);
   font-size: 14px;
 }
 a.button:hover {
@@ -128,6 +126,8 @@ input[type=file]::-webkit-file-upload-button {
   border: solid 1px #666;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
   border-radius: 5px;
   padding: 4px 23px;
   text-decoration: none;

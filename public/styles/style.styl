@@ -1,16 +1,21 @@
 /* Global Functions */
+// Define collect of vendor prefixes.
+// Official will be used to output the property without a prefix.
+vendors = webkit moz o ms official
+// Define a function to add vendor prefixes to a property and then pass the arguments.
 vendor(prop, args)
-  -webkit-{prop} args
-  -moz-{prop} args
-  -o-{prop} args
-  -ms-{prop} args
-  {prop} args
+  for vendor in vendors
+      if vendor == official
+        {prop} args
+      else
+        -{vendor}-{prop}: args
 fs()
   font-size arguments
 shad()
   vendor 'box-shadow' arguments
 bi()
   background-image arguments
+// Define gradient function:
 grad()
   bi -moz-linear-gradient(arguments);
   bi -webkit-linear-gradient(arguments);
@@ -20,9 +25,7 @@ grad()
 bc()
   background-color arguments
 rad()
-  -webkit-border-radius arguments
-  -moz-border-radius arguments
-  border-radius arguments
+  vendor 'border-radius' arguments
 pad()
   padding arguments
 padb()
@@ -70,7 +73,7 @@ h3
   mart 40px
 .product
   mart 40px
-  padb 20px
+  pad 1px 0 10px
   borb dotted 2px rgba(0,0,0,0.1)
 .photoList 
   ul
@@ -88,6 +91,7 @@ h3
 a
   &.logout
     float right
+    mar 0 0 0 20px
   &.button
     grad top, #fff, #ccc
     bor solid 1px #666
@@ -96,7 +100,6 @@ a
     deco none
     color #000
     shad 1px 1px 3px #666
-    grad top, #ccc, #fff
     fs 14px
     &:hover
       bi none;

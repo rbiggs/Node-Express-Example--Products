@@ -1,6 +1,12 @@
 prepend body 
-  p
-    a(href='/logout', class="logout") Logout
+  // If the user is logged in, show the logout link:
+  - if (user) 
+    p
+      a(href='/logout', class="logout") Logout
+  // Otherwise show the login link:
+  - if (!user) 
+    p
+      a(href='/login', class="logout") Login
   h1.returnHome 
     a(href='/') Most Popular Products
 script
@@ -8,4 +14,4 @@ script
 #products!= partial('../partials/products/product', products);
 h3 Add a new product
 p
- a(href='/products/new', class='button') New Product
+  a(href='/products/new', class='button') New Product

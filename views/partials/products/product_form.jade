@@ -15,13 +15,16 @@ p
   input(type='text', id='productPrice', name='product[price]', value=product.price)p
     label(for='product_photo') Photo:
 p
+  // Render a select box of available images:
   select(id='product_photo', name='product[photo]')
     - each photo in photos
       option(value=photo, selected=(product.photo == photo))= photo
 p
-  //input(type='submit')
+  // If a product id exists, the user is editing one.
+  // Allow the user to go back to the product view.
   - if (product.id)
     a(href='/products/' + product.id, class='button back') Back
+    // Otherwise, it's a new product, so allow the user to go back to products page.
   - else
     a(href='/products/', class='button back') Back    
   a(href='javascript:void(null)', class='button submit') Submit

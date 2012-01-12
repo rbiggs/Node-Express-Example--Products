@@ -1,3 +1,5 @@
+// Define products model.
+// In real life this data would be retrieved from a database.
 var products = [
 	{
 		id : 1,
@@ -25,8 +27,11 @@ var products = [
 	}
 ];
 
-module.exports.all = products;
+// Make the data available to the app:
+module.exports.list = products;
 
+// Define a 'find' method for products.
+// This will enable you to search products by id.
 module.exports.find = function(id) {
   id = parseInt(id, 10);
   var found = null;
@@ -40,12 +45,16 @@ module.exports.find = function(id) {
   return found;
 }
 
+// Define method to create a new product id based on current ids.
 module.exports.set = function(id, product) {
   id = parseInt(id, 10);
   product.id = id;
   products[id - 1] = product;
 };
 
+// Define method to create an empty object for a new product.
+// This will be used to fill out the appropriate values in /views/partials/products/product_form.jade,
+// which is loaded when the user requested /views/products/new.jade.
 module.exports.new = function() {
   return {
     name: '',
@@ -54,6 +63,8 @@ module.exports.new = function() {
   };
 }
 
+// Define a function to insert the new product into the product collection.
+// This is executed when the user submits the new product.
 module.exports.insert = function(product) {
   var id = products.length + 1;
   product.id = id;

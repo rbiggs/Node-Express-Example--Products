@@ -1,6 +1,9 @@
+p
+  a(href='/logout', class="logout") Logout
 h1 Editing #{product.name}
 form(action='/products/' + product.id, method='POST') 
   input(type='hidden', name='_method', value='PUT')
+  // Use the product_form partial:
   div!= partial('../partials/products/product_form', {locals: {product: product}})
   script
     $(function() {

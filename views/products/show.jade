@@ -1,7 +1,14 @@
-p
-  a(href='/logout', class="logout") Logout
+// If the user is logged in, show the logout link:
+- if (user) 
+  p
+    a(href='/logout', class="logout") Logout
+// Otherwise show the login link:
+- if (!user) 
+  p
+    a(href='/login', class="logout") Login
 h1 Details for #{product.name}
 p= product.description
+// If the user chose a photo that is not blank, render it:
 - if (product.photo && !/blank/.test(product.photo))
   p
     img(src=product.photo, alt=product.photo)
@@ -9,4 +16,6 @@ p
   strong Price: #{product.price}
 p
   a(href='/products/', class='button back') Back
-  a(href='/products/' + product.id + '/edit', class='button') Edit
+  // If the user is logged in, show the Edit button:
+  - if (user) 
+    a(href='/products/' + product.id + '/edit', class='button') Edit
