@@ -9,9 +9,9 @@
 h1 Details for #{product.name}
 p= product.description
 // If the user chose a image that is not blank, render it:
-- if (product.photo && !/blank/.test(product.photo))
+- if (product.image && !/blank/.test(product.image))
   p
-    img(src=product.photo, alt=product.photo)
+    img(src=product.image, alt=product.image)
 p 
   strong Price: #{product.price}
 p

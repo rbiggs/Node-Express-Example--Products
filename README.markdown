@@ -1,5 +1,5 @@
 ---
-title: A Working Example of Node with Connect, Express, Jade and Stylus
+A Working Example of Node with Connect, Express, Jade and Stylus
 ---
 
 Recently I was interested in learning how Node.js works for Web development. I installed it and npm. No problem. I worked on a few simple implementations of servers doing some very basic routing. That was OK, but I wanted to do something more serious, something more like Sinatra for Ruby. I wanted to get Express.js installed and throw something together. There were a number of what looked like good tutorials online, so I decided to go for it. Boy was I wrong. Not that the tutorials are bad, they're quite good. The problem is they're old. A lot of things have changed with Node, Connect and Express. The result was that besides something very basic, nothing else would work. Oh, and it is kind of hard to type along with a video tutorial when the presenter makes changes so fast you can't see what he just did, or parts of the code are obscured in the presentation. Just saying. 
