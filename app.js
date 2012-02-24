@@ -6,7 +6,7 @@ var express = require('express')
   , crypto = require('crypto');
 
 // Create an instance of the server.
-var app = module.exports = express.createServer();
+var app = exports = express.createServer();
 
 // Server configuration
 app.configure(function(){
