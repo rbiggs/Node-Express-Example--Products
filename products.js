@@ -91,7 +91,7 @@ exports.post = function(req, res) {
     res.redirect('/products/' + id);
 }
 
-
+// Import images helpers for 'new' and 'edit' methods:
 var images = require('./images');
 
 
