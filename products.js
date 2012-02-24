@@ -60,7 +60,6 @@ var create = function() {
   };
 }
 
-
 // Define a function to insert the new product into the product collection.
 // This is executed when the user submits the new product.
 var insert = function(product) {
@@ -69,7 +68,6 @@ var insert = function(product) {
   products[id - 1] = product;
   return id;
 }
-
 
 // When the user access the '/products' route, get all products.
 // This is used to render out all the products defined in the data model (products.js).
@@ -83,7 +81,6 @@ exports.index = function(req, res) {
   }});
 }
 
-
 // Handle adding a new product to the live data model.
 exports.post = function(req, res) {
     var id = insert(req.body.product);
@@ -91,9 +88,8 @@ exports.post = function(req, res) {
     res.redirect('/products/' + id);
 }
 
-// Import images helpers for 'new' and 'edit' methods:
+// Import image helpers for 'new' and 'edit' methods:
 var images = require('./images');
-
 
 // Create a new product.
 exports.new = function(req, res) {
@@ -112,6 +108,7 @@ exports.new = function(req, res) {
 
   }); 
 }
+
 // When the user selects the Edit button,
 // render the edit page.
 // Restrict access to logged in user.
@@ -129,7 +126,6 @@ exports.edit = function(req, res) {
 
   });
 }
-
 
 // Handle the request for a particular product.
 // Check if the user is logged in or not to
@@ -150,7 +146,6 @@ exports.id = function(req, res) {
 	  res.redirect('/products');
 	}
 }
-
 
 // Update edited product:
 exports.update = function(req, res){

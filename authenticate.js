@@ -1,4 +1,6 @@
+// Import cryptography for user authentication:
 var crypto = require('crypto');
+
 //Generate salt for the user to prevent rainbow table attacks.
 var users = {
   joe: {
@@ -12,6 +14,18 @@ var users = {
 function hash(msg, key) {
   return crypto.createHmac('sha256', key).update(msg).digest('hex');
 }
+
+// Manage user login:
+exports.index = function(req, res) {
+  // If the user is already logged in,
+  // send him to the products page.
+  if (req.session.user) {
+    res.redirect('/products');
+  // Otherwise send him to the login page.
+  } else {
+    res.render('login');
+  }
+};
 
 // Authenticate using our plain object.
 // For a real app you'd use some kind of data persistance (database).
@@ -54,7 +68,6 @@ exports.login = function (req, res) {
   });
 };
 
-
 // Logout the user:
 exports.logout = function(req, res) {
   // Destroy the user's session to log them out.
@@ -62,15 +75,4 @@ exports.logout = function(req, res) {
   req.session.destroy(function() {
     res.redirect('/');
   });
-};
-
-exports.index = function(req, res) {
-  // If the user is already logged in,
-  // send him to the products page.
-  if (req.session.user) {
-    res.redirect('/products');
-  // Otherwise send him to the login page.
-  } else {
-    res.render('login');
-  }
 };

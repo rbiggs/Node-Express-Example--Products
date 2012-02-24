@@ -12,6 +12,7 @@ prepend body
 script
    document.body.classList.toggle('homeCursor');
 #products!= partial('../partials/products/product', products);
-h3 Add a new product
-p
-  a(href='/products/new', class='button') New Product
+- if (user)
+  h3 Add a new product
+    p
+      a(href='/products/new', class='button') New Product

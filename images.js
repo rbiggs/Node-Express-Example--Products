@@ -18,9 +18,9 @@ var list = function(callback) {
     callback(err, ret);
   });
 };
+
 // Export the list to use in products.js
 exports.list = list;
-
 
 // Handle access to the images page.
 // If the user is not logged in, redirect to the login page.
@@ -32,12 +32,10 @@ exports.load = function(req, res) {
   });
 }
 
-
 // Render the new image page when the user selects that button.
 exports.new = function(req, res) {
   res.render('images/new');
 }
-
 
 // Upload a new image:
 exports.upload = function(req, res) {

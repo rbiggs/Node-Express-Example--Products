@@ -37,7 +37,6 @@ var authenticate = require('./authenticate');
 var products = require('./products');
 var images = require('./images');
 
-
 // Define a configuration state for development mode.
 // This dumps the full stack to the terminal console.
 // Set this in the terminal: NODE_ENV=production
@@ -67,7 +66,6 @@ app.dynamicHelpers({
   }
 });
 
-
 // Function to restrict access to certain routes.
 // This will be passed in as an argument for the routes to be restricted.
 function restrict(req, res, next) {
@@ -81,9 +79,8 @@ function restrict(req, res, next) {
   }
 }
 
-
 //////////////////////////////////
-// HANDLE ROUTES:
+// HANDLE ROUTES VERBS:
 //////////////////////////////////
 // Handle access to the main page
 app.get('/', index.load);
@@ -111,7 +108,6 @@ app.get('/images', restrict, images.load);
 app.get('/images/new', restrict, images.new);
 // Handle uploading a new image.
 app.post('/images', images.upload);
-
 
 ////////////////////////
 // Basic Error Handling
