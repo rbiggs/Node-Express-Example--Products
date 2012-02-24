@@ -13,12 +13,12 @@ p
   |  Price:
 p
   input(type='text', id='productPrice', name='product[price]', value=product.price)p
-    label(for='product_photo') Photo:
+    label(for='product_image') Image:
 p
   // Render a select box of available images:
-  select(id='product_photo', name='product[photo]')
-    - each photo in photos
-      option(value=photo, selected=(product.photo == photo))= photo
+  select(id='product_image', name='product[image]')
+    - each image in images
+      option(value=image, selected=(product.image == image))= image
 p
   // If a product id exists, the user is editing one.
   // Allow the user to go back to the product view.
@@ -30,4 +30,4 @@ p
   a(href='javascript:void(null)', class='button submit') Submit
 p
   br
-  a(href='/photos', class="button") View Available Photos
+  a(href='/images', class="button") View Available Images

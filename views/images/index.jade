@@ -1,0 +1,24 @@
+script
+    // Use ECMAScript5 classList collection to toggle the class "imageList" on the body tag:
+    document.body.classList.toggle('imageList')
+p
+  a(href='/logout', class="logout") Logout
+h1 Available Images:
+
+p
+  a(href='/products/', class='button back') Back
+  a(href='/images/new', class='button') Add new image
+
+ul
+  - each image in images
+    // Separate the file name from the path to put under the image.
+    // Ignore the blank.png image.
+    - if (!/blank/.test(image))
+      - var imgName = image.split('/');
+      - imgName = imgName[imgName.length-1]
+      li
+        img(src=image)
+        p.name= imgName
+p
+  a(href='/products/', class='button back') Back
+  a(href='/images/new', class='button') Add new image

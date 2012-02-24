@@ -1,19 +1,19 @@
 p
   a(href='/logout', class="logout") Logout
-h1 New Photo
-form(action='/photos', method='POST', enctype='multipart/form-data')!= partial('partials/photos/photo_form')
+h1 New Image
+form(action='/images', method='POST', enctype='multipart/form-data')!= partial('partials/images/image_form')
   p
-    a(href='/photos/', class='button back') Back
+    a(href='/image/', class='button back') Back
     a(href='javascript:void(null)', class='button submit') Submit
 script
   $(function() {
     $('.submit').bind('click', function() {
       $('form').submit()
     })
-    $('#uploadPhotoInput').bind("mouseover", function() {
+    $('#uploadImageInput').bind("mouseover", function() {
       this.classList.add('hover')
     });
-    $('#uploadPhotoInput').bind("mouseout", function() {
+    $('#uploadImageInput').bind("mouseout", function() {
       this.classList.remove('hover')
     });
   });

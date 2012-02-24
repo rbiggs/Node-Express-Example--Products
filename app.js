@@ -1,8 +1,7 @@
-/**
- * Module dependencies.
- */
+////////////////////////
+//  Module dependencies.
+////////////////////////
 var express = require('express')
-  , routes = require('./routes')
   , fs = require('fs')
   , crypto = require('crypto');
 
@@ -29,6 +28,15 @@ app.configure(function(){
   // Designate a directory for static files that won't change:
   app.use(express.static(__dirname + '/public'));
 });
+
+//////////////////////////////
+// Import route helpers:
+//////////////////////////////
+var index = require('./index');
+var authenticate = require('./authenticate');
+var products = require('./products');
+var images = require('./images');
+
 
 // Define a configuration state for development mode.
 // This dumps the full stack to the terminal console.
@@ -59,35 +67,6 @@ app.dynamicHelpers({
   }
 });
 
-//Generate a salt for the user to prevent rainbow table attacks.
-var users = {
-  joe: {
-    name: 'joe'
-    , salt: 'randomly-generated-salt'
-    , pass: hash('bozo', 'randomly-generated-salt')
-  }
-};
-
-// Used to generate a hash of the plain-text password + salt.
-function hash(msg, key) {
-  return crypto.createHmac('sha256', key).update(msg).digest('hex');
-}
-
-// Authenticate using our plain-object.
-// For a real app you'd use some kind of data persistance (database)
-function authenticate(name, pass, fn) {
-  var user = users[name];
-  // If the user doesn't exist, handle it:
-  if (!user) return fn(new Error('cannot find user'));
-  /* 
-     Apply the same algorithm to the POSTed password, applying
-     the hash against the pass / salt, if there is a match we
-     found the user. 
-  */
-  if (user.pass == hash(pass, user.salt)) return fn(null, user);
-  // Otherwise password is invalid:
-  fn(new Error('invalid password'));
-}
 
 // Function to restrict access to certain routes.
 // This will be passed in as an argument for the routes to be restricted.
@@ -102,185 +81,41 @@ function restrict(req, res, next) {
   }
 }
 
+
+//////////////////////////////////
+// HANDLE ROUTES:
+//////////////////////////////////
 // Handle access to the main page
-app.get('/', function(req, res) {
-  // If the user is logged in, pass that info to the page.
-  // It use that to show a 'logout' link, otherwise
-  // it will show a login link.
-  var user = req.session.user || '';
-  res.render('index', {locals: {
-      user: user
-  }});
-});
+app.get('/', index.load);
 
 // Handle access to the login page.
-app.get('/login', function(req, res) {
-  // If the user is already logged in,
-  // send him to the products page.
-  if (req.session.user) {
-    res.redirect('/products');
-  // Otherwise send him to the login page.
-  } else {
-    res.render('login');
-  }
-});
-
-// Handle the posting of the username and password.
-app.post('/login', function(req, res) {
-  // Retrive the username and password from the request body.
-  authenticate(req.body.username, req.body.password, function(err, user) {
-    // If the username entered is legit, validate session.
-    if (user) {
-      // Regenerate session when signing in
-      // to prevent fixation 
-      req.session.regenerate(function() {
-        /*
-          Store the user's primary key 
-          in the session store to be retrieved,
-          or in this case the entire user object,
-        */
-        req.session.user = user;
-        res.redirect('back');
-      });
-    // Otherwise, user entered wrong username, so redirect back to login with a message.
-    } else {
-      req.session.error = 'Authentication failed. Please check your username and password.';
-      res.redirect('back');
-    }
-  });
-});
-
+app.get('/login', authenticate.index);
+// Login user:
+app.post('/login', authenticate.login);
 // This is executed when the user clicks a logout link:
-app.get('/logout', function(req, res) {
-  // Destroy the user's session to log them out.
-  // Will be re-created next request.
-  req.session.destroy(function() {
-    res.redirect('/');
-  });
-});
+app.get('/logout', authenticate.logout);
 
-// Routes
-var products = require('./products');
-var photos = require('./photos');
-
-// This is used to render out all the products defined in the data model (products.js).
-function getAllProducts(req, res) {
-  // We want to pass in the logged state of the user.
-  // This will be used to show either the login or logout link.
-  var user = req.session.user || '';
-  res.render('products/index', {locals: {
-      products: products.list,
-      user: user
-  }});
-}
-
-// When the user access the '/products' route, get all products.
-app.get('/products', function(req, res) {
-  getAllProducts(req, res);
-});
-
-// For new products, restrict access to logged in user.
-app.get('/products/new', restrict, function(req, res) {
-  // products.new is defined in products.js.
-  var product = products.new();
-  // Get available photos in 'upload' directory.
-  // This list will be used by the page to build a image select box.
-  photos.list(function(err, photo_list) {
-    if (err) {
-      throw err;
-    }
-    res.render('products/new', {locals: {
-      product: product,
-      photos: photo_list
-    }});
-
-  }); 
-});
-
-// Handle adding a new product to the live data model.
-app.post('/products', function(req, res) {
-    var id = products.insert(req.body.product);
-    // Redirect the user to the new product's page.
-    res.redirect('/products/' + id);
-});
-
-// Handle the request for a particular product.
-// Check if the user is logged in or not to
-// show the login/logout links.
-app.get('/products/:id', function(req, res) {
-    var user = req.session.user || '';
-    var product = products.find(req.params.id);
-    // If the product ID exists, render its page.
-    if (product) {
-      res.render('products/show', {
-        locals: {
-          product: product,
-          user: user
-        }
-      });
-    // Otherwise send the user back to the products page.
-    } else {
-      getAllProducts(req, res);
-    }
-});
-
-// When the user selects the Edit button,
-// render the edit page.
-// Restrict access to logged in user.
-// Pass the list of available photos for rendering a select box in the template.
-app.get('/products/:id/edit', restrict, function(req, res) {
-  var product = products.find(req.params.id);
-  photos.list(function(err, photo_list) {
-    if (err) {
-      throw err;
-    }
-    res.render('products/edit', {locals: {
-      product: product,
-      photos: photo_list
-    }});
-
-  });
-});
-
+// Get all available products:
+app.get('/products',  products.index);
+app.post('/products', products.post);
+// Restrict creating new products to logged in user:
+app.get('/products/new', restrict, products.new);
+app.get('/products/:id', products.id);
+// Restrict editing products:
+app.get('/products/:id/edit', restrict, products.edit);
 // Handle updating a product after editing it.
-app.put('/products/:id', function(req, res){
-    var id = req.params.id;
-    products.set(id, req.body.product);
-    res.redirect('/products/' + id);
-});
+app.put('/products/:id', products.update);
 
-// Handle access to the photos page.
-// If the user is not logged in, redirect to the login page.
-app.get('/photos', restrict, function(req, res) {
-  photos.list(function(err, photo_list) {
-    res.render('photos/index', {locals: {
-      photos: photo_list
-    }})
-  });
-});
-
-// Render the new photo page when the user selects that button.
-// For new photos, restrict access to logged in user.
-app.get('/photos/new', restrict, function(req, res) {
-  res.render('photos/new');
-});
-
+app.get('/images', restrict, images.load);
+// For adding new images, restrict access to logged in user.
+app.get('/images/new', restrict, images.new);
 // Handle uploading a new image.
-app.post('/photos', function(req, res) {
-	console.log(req.files.photo);
-	var newFile =__dirname+'/public/uploads/photos/'+ req.files.photo.name;
-  	fs.rename(req.files.photo.path , newFile, function (data,error) {
-		console.log(data); 
-		if(error) {
-			throw error;
-		}
-	});
-  // If the upload was successful, redirect to '/photos'.
-  res.redirect('/photos');
-  
-});
+app.post('/images', images.upload);
 
+
+////////////////////////
 // Basic Error Handling
+///////////////////////
 // If the route provided was not trapped by the previous handlers,
 // render it as a 404 error page.
 

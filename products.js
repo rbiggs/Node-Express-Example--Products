@@ -27,12 +27,9 @@ var products = [
 	}
 ];
 
-// Make the data available to the app:
-module.exports.list = products;
-
 // Define a 'find' method for products.
 // This will enable you to search products by id.
-module.exports.find = function(id) {
+var find = function(id) {
   id = parseInt(id, 10);
   var found = null;
   productloop: for(product_index in products) {
@@ -46,7 +43,7 @@ module.exports.find = function(id) {
 }
 
 // Define method to create a new product id based on current ids.
-module.exports.set = function(id, product) {
+var set = function(id, product) {
   id = parseInt(id, 10);
   product.id = id;
   products[id - 1] = product;
@@ -55,7 +52,7 @@ module.exports.set = function(id, product) {
 // Define method to create an empty object for a new product.
 // This will be used to fill out the appropriate values in /views/partials/products/product_form.jade,
 // which is loaded when the user requested /views/products/new.jade.
-module.exports.new = function() {
+var create = function() {
   return {
     name: '',
     description: '',
@@ -63,11 +60,120 @@ module.exports.new = function() {
   };
 }
 
+
 // Define a function to insert the new product into the product collection.
 // This is executed when the user submits the new product.
-module.exports.insert = function(product) {
+var insert = function(product) {
   var id = products.length + 1;
   product.id = id;
   products[id - 1] = product;
   return id;
+}
+
+
+// When the user access the '/products' route, get all products.
+// This is used to render out all the products defined in the data model (products.js).
+exports.index = function(req, res) {
+  // We want to pass in the logged state of the user.
+  // This will be used to show either the login or logout link.
+  var user = req.session.user || '';
+  res.render('products/index', {locals: {
+      products: products,
+      user: user
+  }});
+}
+
+
+// For new products, restrict access to logged in user.
+exports.new = function(req, res) {
+  // products.new is defined in products.js.
+  var product = create();
+  // Get available images in 'upload' directory.
+  // This list will be used by the page to build a image select box.
+  images.list(function(err, image_list) {
+    if (err) {
+      throw err;
+    }
+    res.render('products/new', {locals: {
+      product: product,
+      images: image_list
+    }});
+
+  }); 
+}
+
+
+// Handle adding a new product to the live data model.
+exports.post = function(req, res) {
+    var id = insert(req.body.product);
+    // Redirect the user to the new product's page.
+    res.redirect('/products/' + id);
+}
+
+
+var images = require('./images');
+
+
+// Create a new product.
+exports.new = function(req, res) {
+  // products.new is defined in products.js.
+  var product = create();
+  // Get available images in 'upload' directory.
+  // This list will be used by the page to build a image select box.
+  images.list(function(err, image_list) {
+    if (err) {
+      throw err;
+    }
+    res.render('products/new', {locals: {
+      product: product,
+      images: image_list
+    }});
+
+  }); 
+}
+// When the user selects the Edit button,
+// render the edit page.
+// Restrict access to logged in user.
+// Pass the list of available images for rendering a select box in the template.
+exports.edit = function(req, res) {
+  var product = find(req.params.id);
+  images.list(function(err, image_list) {
+    if (err) {
+      throw err;
+    }
+    res.render('products/edit', {locals: {
+      product: product,
+      images: image_list
+    }});
+
+  });
+}
+
+
+// Handle the request for a particular product.
+// Check if the user is logged in or not to
+// show the login/logout links.
+exports.id = function(req, res) {
+    var user = req.session.user || '';
+    var product = find(req.params.id);
+    // If the product ID exists, render its page.
+    if (product) {
+      res.render('products/show', {
+        locals: {
+          product: product,
+          user: user
+        }
+      });
+    // Otherwise send the user back to the products page.
+    } else {
+      res.redirect('/products');
+    }
+}
+
+
+// Update edited product:
+exports.update = function(req, res){
+    var id = req.params.id;
+    set(id, req.body.product);
+    res.redirect('/products/' + id);
 }

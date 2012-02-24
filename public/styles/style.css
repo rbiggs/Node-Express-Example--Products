@@ -43,18 +43,18 @@ h3 {
   padding: 1px 0 10px;
   border-bottom: dotted 2px rgba(0,0,0,0.10);
 }
-.photoList ul {
+.imageList ul {
   margin-bottom: 40px;
 }
-.photoList ul li {
+.imageList ul li {
   list-style: none;
   padding-bottom: 20px;
   border-bottom: solid 1px #ccc;
 }
-.photoList ul li img {
+.imageList ul li img {
   margin: 20px 20px 20px 0;
 }
-.photoList ul:after {
+.imageList ul:after {
   content: "";
   display: block;
   clear: both;

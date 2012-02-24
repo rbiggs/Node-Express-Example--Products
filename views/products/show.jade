@@ -8,7 +8,7 @@
     a(href='/login', class="logout") Login
 h1 Details for #{product.name}
 p= product.description
-// If the user chose a photo that is not blank, render it:
+// If the user chose a image that is not blank, render it:
 - if (product.photo && !/blank/.test(product.photo))
   p
     img(src=product.photo, alt=product.photo)
