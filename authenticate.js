@@ -76,3 +76,17 @@ exports.logout = function(req, res) {
     res.redirect('/');
   });
 };
+
+
+// Function to restrict access to certain routes.
+// This will be passed in as an argument for the routes to be restricted.
+exports.restrict = function(req, res, next) {
+  // If the user is logged in, continue:
+  if (req.session.user) {
+    next();
+  // Else redirect the user to login and inform them with a message:
+  } else {
+    req.session.error = 'Access denied! Please login.';
+    res.redirect('/login');
+  }
+}
