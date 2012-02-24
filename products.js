@@ -84,25 +84,6 @@ exports.index = function(req, res) {
 }
 
 
-// For new products, restrict access to logged in user.
-exports.new = function(req, res) {
-  // products.new is defined in products.js.
-  var product = create();
-  // Get available images in 'upload' directory.
-  // This list will be used by the page to build a image select box.
-  images.list(function(err, image_list) {
-    if (err) {
-      throw err;
-    }
-    res.render('products/new', {locals: {
-      product: product,
-      images: image_list
-    }});
-
-  }); 
-}
-
-
 // Handle adding a new product to the live data model.
 exports.post = function(req, res) {
     var id = insert(req.body.product);
