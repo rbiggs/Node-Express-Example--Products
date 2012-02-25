@@ -1,15 +1,6 @@
 // Import cryptography for user authentication:
 var crypto = require('crypto');
 
-//Generate salt for the user to prevent rainbow table attacks.
-var users = {
-  joe: {
-    name: 'joe',
-    salt: 'randomly-generated-salt',
-    pass: hash('bozo', 'randomly-generated-salt')
-  }
-};
-
 // Used to generate a hash of the plain-text password + salt.
 function hash(msg, key) {
   return crypto.createHmac('sha256', key).update(msg).digest('hex');
@@ -26,6 +17,20 @@ exports.index = function(req, res) {
     res.render('login');
   }
 };
+var users = {
+  'joe': {
+    'name': 'joe',
+    'salt': 'randomly-generated-salt',
+    'pass': hash('bozo', 'randomly-generated-salt')
+  },
+  'robert': {
+    'name': 'robert',
+    'salt': 'randomly-generated-salt',
+    'pass': hash('dingo', 'randomly-generated-salt')
+  }
+};
+//Generate salt for the user to prevent rainbow table attacks.
+//var authorized = require('users_model');
 
 // Authenticate using our plain object.
 // For a real app you'd use some kind of data persistance (database).

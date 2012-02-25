@@ -1,13 +1,13 @@
-////////////////////////
-//  Module dependencies.
-////////////////////////
+/*
+  Module dependencies.
+*/
 var express = require('express'), 
   fs = require('fs'), 
   crypto = require('crypto');
 
-//////////////////////////////
-// Server setup
-//////////////////////////////
+/*
+ Server setup
+*/
 // Create an instance of the server:
 var app = express.createServer();
 // Import configuration settings for server:
@@ -16,17 +16,17 @@ var configuration = require('./configuration');
 configuration.setup(app);
 
 
-//////////////////////////////
-// Import route helpers:
-//////////////////////////////
+/*
+ Import route helpers:
+*/
 var index = require('./index');
 var authenticate = require('./authenticate');
 var products = require('./products');
 var images = require('./images');
 
-//////////////////////////////////
-// HANDLE ROUTES VERBS:
-//////////////////////////////////
+/*
+ Handle route verbs:
+*/
 // Handle access to the main page
 app.get('/', index.load);
 
@@ -54,9 +54,9 @@ app.get('/images/new', authenticate.restrict, images.new);
 // Handle uploading a new image.
 app.post('/images', images.upload);
 
-////////////////////////
-// Basic Error Handling
-///////////////////////
+/*
+ Basic Error Handling
+*/
 // If the route provided was not trapped by the previous handlers,
 // render it as a 404 error page.
 

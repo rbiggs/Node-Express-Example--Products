@@ -2,15 +2,15 @@
 var fs = require('fs');
 
 // Define path of directory where phtotos reside.
-var src_path = __dirname + '/public/uploads/images/'
+var src_path = __dirname.substr(0, __dirname.lastIndexOf('/')) + '/public/uploads/images/'
 
 // Export collection of available images.
 var list = function(callback) {
   fs.readdir(src_path, function(err, files) {
     var ret = [];
     files.forEach(function(file) {
-      // Ignore the .DS_Store Mac system file!!!
-      if (!/DS_Store/img.test(file)) {
+      // Ignore files beginning with '.'!
+      if (!/^\./img.test(file)) {
         ret.push('/uploads/images/' + file);
       }
     });
