@@ -11,7 +11,7 @@ var express = require('express'),
 // Create an instance of the server:
 var app = express.createServer();
 // Import configuration settings for server:
-var configuration = require('./configuration');
+var configuration = require('./controllers/configuration');
 // Initialize server configuration:
 configuration.setup(app);
 
@@ -19,10 +19,10 @@ configuration.setup(app);
 /*
  Import route helpers:
 */
-var index = require('./index');
-var authenticate = require('./authenticate');
-var products = require('./products');
-var images = require('./images');
+var index = require('./controllers/index');
+var authenticate = require('./controllers/authenticate');
+var products = require('./controllers/products');
+var images = require('./controllers/images');
 
 /*
  Handle route verbs:
