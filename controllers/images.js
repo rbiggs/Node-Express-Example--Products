@@ -40,7 +40,7 @@ exports.new = function(req, res) {
 // Upload a new image:
 exports.upload = function(req, res) {
 	console.log(req.files.image);
-	var newFile =__dirname+'/public/uploads/images/'+ req.files.image.name;
+	var newFile = src_path + req.files.image.name;
   	fs.rename(req.files.image.path , newFile, function (data,error) {
 		console.log(data); 
 		if(error) {
