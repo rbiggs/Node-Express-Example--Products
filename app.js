@@ -1,9 +1,7 @@
 /*
   Module dependencies.
 */
-var express = require('express'), 
-  fs = require('fs'), 
-  crypto = require('crypto');
+var express = require('express');
 
 /*
  Server setup
