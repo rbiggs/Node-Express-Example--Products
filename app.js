@@ -66,4 +66,4 @@ app.use(function(req, res, next) {
 
 // Tell the server what port to listen to.
 app.listen(4444);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+console.log('Express server listening on port %d in %s mode', app.address().port, app.settings.env);
