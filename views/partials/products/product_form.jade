@@ -1,25 +1,28 @@
-p 
+p.label 
   label(for='productName')
   |  Name:
 p
   input(type='text', id='productName', name='product[name]', value=product.name)
-p 
+p.label 
   label(for='productDescription')
   |  Description:
 p
   textarea(id='productDescription', name='product[description]')= product.description
-p 
+p.label 
   label(for='productDescription')
   |  Price:
+p.label 
+  input(type='text', id='productPrice', name='product[price]', value=product.price)
 p
-  input(type='text', id='productPrice', name='product[price]', value=product.price)p
-    label(for='product_image') Image:
-p
+p.label
+  label(for='product_image') Image:
+p.selectLabel 
   // Render a select box of available images:
   select(id='product_image', name='product[image]')
     - each image in images
       option(value=image, selected=(product.image == image))= image
 p
+  br
   // If a product id exists, the user is editing one.
   // Allow the user to go back to the product view.
   - if (product.id)

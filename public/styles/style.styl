@@ -42,6 +42,8 @@ borb()
   border-bottom arguments
 deco()
   text-decoration arguments
+fw()
+	font-weight arguments
 /* Begin App Styles */
 html, body
   mar 0
@@ -140,10 +142,16 @@ textarea
   color red;
   bc #fff9d6
   bor solid 1px red
-  font-weight bold
+  fw bold
   pad 20px
 span.error
   mar 10px 0 20px
   display inline-block
 .name
-  font-weight bold
+  fw bold
+.label
+  mar 0
+.label + p 
+  margin-top 0
+.selectLabel
+  margin-top 0

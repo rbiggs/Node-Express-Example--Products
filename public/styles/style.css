@@ -174,3 +174,12 @@ span.error {
 .name {
   font-weight: bold;
 }
+.label {
+  margin: 0;
+}
+.label + p {
+  margin-top: 0;
+}
+.selectLabel {
+  margin-top: 0;
+}

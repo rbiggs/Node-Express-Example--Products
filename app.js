@@ -27,7 +27,6 @@ var images = require('./controllers/images');
 */
 // Handle access to the main page
 app.get('/', index.load);
-
 // Handle access to the login page.
 app.get('/login', authenticate.index);
 // Login user:
@@ -46,6 +45,10 @@ app.get('/products/:id/edit', authenticate.restrict, products.edit);
 // Handle updating a product after editing it.
 app.put('/products/:id', products.update);
 
+/*
+  Code to view and upload images
+*/
+// Load images.
 app.get('/images', authenticate.restrict, images.load);
 // For adding new images, restrict access to logged in user.
 app.get('/images/new', authenticate.restrict, images.new);

@@ -14,7 +14,7 @@ var list = function(callback) {
         ret.push('/uploads/images/' + file);
       }
     });
-    console.log(ret);
+    //console.log(ret);
     callback(err, ret);
   });
 };
@@ -42,7 +42,7 @@ exports.upload = function(req, res) {
 	console.log(req.files.image);
 	var newFile = src_path + req.files.image.name;
   	fs.rename(req.files.image.path , newFile, function (data,error) {
-		console.log(data); 
+		//console.log(data); 
 		if(error) {
 			throw error;
 		}
