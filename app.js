@@ -8,55 +8,30 @@ var express = require('express');
 */
 // Create an instance of the server:
 var app = express.createServer();
-// Import configuration settings for server:
-var configuration = require('./controllers/configuration');
-// Initialize server configuration:
-configuration.setup(app);
-
+// Import configuration settings and initialize server:
+require('./controllers/configuration').setup(app);
 
 /*
- Import route helpers:
-*/
-var index = require('./controllers/index');
-var authenticate = require('./controllers/authenticate');
-var products = require('./controllers/products');
-var images = require('./controllers/images');
-
-/*
- Handle route verbs:
+ Handle routes:
 */
 // Handle access to the main page
-app.get('/', index.load);
-// Handle access to the login page.
-app.get('/login', authenticate.index);
-// Login user:
-app.post('/login', authenticate.login);
-// This is executed when the user clicks a logout link:
-app.get('/logout', authenticate.logout);
+require('./controllers/index')(app);
 
-// Get all available products:
-app.get('/products',  products.index);
-app.post('/products', products.post);
-// Restrict creating new products to logged in user:
-app.get('/products/new', authenticate.restrict, products.new);
-app.get('/products/:id', products.id);
-// Restrict editing products:
-app.get('/products/:id/edit', authenticate.restrict, products.edit);
-// Handle updating a product after editing it.
-app.put('/products/:id', products.update);
+// Import routes for login/logout:
+require('./controllers/login')(app);
+
+// Handle access to the main page
+require('./controllers/index')(app);
+
+// Import routes for products:
+require('./controllers/products')(app);
+
+// Import routes for images:
+require('./controllers/images')(app);
+
 
 /*
-  Code to view and upload images
-*/
-// Load images.
-app.get('/images', authenticate.restrict, images.load);
-// For adding new images, restrict access to logged in user.
-app.get('/images/new', authenticate.restrict, images.new);
-// Handle uploading a new image.
-app.post('/images', images.upload);
-
-/*
- Basic Error Handling
+ Route Error Handling
 */
 // If the route provided was not trapped by the previous handlers,
 // render it as a 404 error page.

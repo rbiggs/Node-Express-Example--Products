@@ -11,6 +11,10 @@ prepend body
     a(href='/') Most Popular Products
 script
    document.body.classList.toggle('homeCursor');
+- if (user)
+  h3 Add a new product
+    p
+      a(href='/products/new', class='button') New Product
 #products!= partial('../partials/products/product', products);
 - if (user)
   h3 Add a new product
