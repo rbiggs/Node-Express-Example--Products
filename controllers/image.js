@@ -2,7 +2,7 @@
 var fs = require('fs');
 
 // Define path of directory where phtotos reside.
-var src_path = __dirname.substr(0, __dirname.lastIndexOf('/')) + '/public/uploads/images/'
+var src_path = __dirname.substr(0, __dirname.lastIndexOf('/')) + '/public/uploads/images/';
 
 // Export collection of available images.
 var list = function(callback) {

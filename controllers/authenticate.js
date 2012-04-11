@@ -35,7 +35,7 @@ exports.authenticate = function(name, pass, fn) {
   if (user.pass == hash(pass, user.salt)) return fn(null, user);
   // Otherwise password is invalid:
   fn(new Error('invalid password'));
-}
+};
 
 // Function to restrict access to certain routes.
 // This will be passed in as an argument for the routes to be restricted.
@@ -48,4 +48,4 @@ exports.restrict = function(req, res, next) {
     req.session.error = 'Access denied! Please login.';
     res.redirect('/login');
   }
-}
+};

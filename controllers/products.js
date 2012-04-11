@@ -16,7 +16,7 @@ var find = function(id) {
     }    
   };
   return found;
-}
+};
 
 // Define method to create a new product id based on current ids.
 var set = function(id, product) {
@@ -34,7 +34,7 @@ var create = function() {
     description: '',
     price: 0
   };
-}
+};
 
 // Define a function to insert the new product into the product collection.
 // This is executed when the user submits the new product.
@@ -43,7 +43,7 @@ var insert = function(product) {
   product.id = id;
   available.products[id - 1] = product;
   return id;
-}
+};
 
 // Import image helpers for 'new' and 'edit' methods:
 var images = require('../controllers/image');

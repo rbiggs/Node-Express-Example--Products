@@ -1,26 +1,20 @@
-/*
-  Module dependencies.
-*/
+/*  Module dependencies  */
 var express = require('express');
 
-/*
- Server setup
-*/
+/*  Server setup  */
 // Create an instance of the server:
 var app = express.createServer();
 // Import configuration settings and initialize server:
 require('./controllers/configuration').setup(app);
 
-/*
- Handle routes:
-*/
+/*  Handle routes:  */
 // Handle access to the main page
 require('./controllers/index')(app);
 
 // Import routes for login/logout:
 require('./controllers/login')(app);
 
-// Handle access to the main page
+// Handle access to the main page:
 require('./controllers/index')(app);
 
 // Import routes for products:
@@ -29,13 +23,9 @@ require('./controllers/products')(app);
 // Import routes for images:
 require('./controllers/images')(app);
 
-
-/*
- Route Error Handling
-*/
+/* Route Error Handling  */
 // If the route provided was not trapped by the previous handlers,
 // render it as a 404 error page.
-
 app.use(function(req, res, next) {
   // respond with html page
   res.render('404');
