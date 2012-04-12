@@ -14,9 +14,6 @@ require('./controllers/index')(app);
 // Import routes for login/logout:
 require('./controllers/login')(app);
 
-// Handle access to the main page:
-require('./controllers/index')(app);
-
 // Import routes for products:
 require('./controllers/products')(app);
 
