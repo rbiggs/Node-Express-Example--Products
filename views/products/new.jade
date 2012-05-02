@@ -1,7 +1,11 @@
 h1 Add a New Product #{product.name}
 form(action='/products', method='POST')
+  
   // Use product_form partial:
   div!= partial('../partials/products/product_form', {locals: {product: product}})
+p
+  br
+  a(href='/images', class="button") View Available Images  
 script
   $(function() {
     $('.submit').bind('click', function() {
