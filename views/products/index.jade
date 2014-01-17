@@ -9,7 +9,7 @@ prepend body
       a(href='/login', class="logout") Login
   h1.returnHome 
     a(href='/') Most Popular Products
-script
+script.
    document.body.classList.toggle('homeCursor');
 // If user is logged in:
 - if (user)
@@ -18,7 +18,15 @@ script
       a(href='/products/new', class='button') New Product
 
 // Output partial for list of available products:     
-#products!= partial('../partials/products/product', products);
+#products
+  for product in products 
+    .product
+      h2= product.name
+      p= product.description
+      p 
+        strong Price: #{product.price}
+      p 
+        a(href='/products/' + product.id, class='button') Details
 
 // If user is logged in:
 - if (user)

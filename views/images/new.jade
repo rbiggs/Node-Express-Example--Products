@@ -5,7 +5,7 @@ form(action='/images', method='POST', enctype='multipart/form-data')!= partial('
   p
     a(href='/images/', class='button back') Back
     a(href='javascript:void(null)', class='button submit') Submit
-script
+script.
   $(function() {
     $('.submit').bind('click', function() {
       $('form').submit()

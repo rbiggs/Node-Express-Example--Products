@@ -8,6 +8,6 @@ module.exports = function(app){
     var user = req.session.user || '';
     res.render('index', {locals: {
       user: user
-	}});
+  }});
   });
 }
